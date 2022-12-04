@@ -1,65 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
     <title>Gift list</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        body {
-            background-color:  #C9182B;
-            min-height: 100vh;
-            ;
-        }
-        .container {
-            margin: auto;
-            width: 100%;
-            min-height: 100vh;
-            max-width: 1280px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background-color: #F23A3A;
-        }
-
-        main {
-           padding: 32px;
-           background-color: #E3F3AC;
-           border-radius: 2px;
-        }
-
-        h1 {
-            font-size: 42px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        li {
-            list-style:none;
-            font-size: 24px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">            
-        <main>
-            <h1>Regalos:</h1>
-      
-            <ul>
-                <li>Medias</li>
-                <li>Caramelos</li>
-                <li>Vitel Tone</li>
-            </ul>
-        </main>
+    
+  </head>
+  <body>
+    <div class="container">
+      <main>
+        <h1>Regalos:</h1>
+        <section class="add">
+          <input type="text" id="add" />
+          <button onclick="add()">Agregar</button>
+        </section>
+        <section class="list">
+          <ul id="gift"></ul>
+        </section>
+      </main>
     </div>
-</body>
+    <script>
+      var gifts = [];
+
+      function add() {
+        const gift = document.getElementById("add").value;
+        
+        if (gift.length != 0) {
+          gifts.push(gift);
+          document.getElementById("add").value = "";
+        }
+
+        show();
+      }
+
+      function show() {
+        let list = "";
+        gifts.forEach((element) => {
+          list += "- " + element + "\n";
+        });
+        document.getElementById("gift").innerText = list;
+      }
+    </script>
+  </body>
 </html>
