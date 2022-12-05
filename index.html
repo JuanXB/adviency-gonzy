@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <title>Gift list</title>
-
-    
   </head>
   <body>
     <div class="container">
@@ -15,7 +13,7 @@
         <h1>Regalos:</h1>
         <section class="add">
           <input type="text" id="add" />
-          <button onclick="add()">Agregar</button>
+          <button onclick="add()" class="btn-add">Agregar</button>
         </section>
         <section class="list">
           <ul id="gift"></ul>
@@ -23,25 +21,39 @@
       </main>
     </div>
     <script>
-      var gifts = [];
+      const list = document.querySelector("ul");
+      const input = document.querySelector("input");
 
       function add() {
-        const gift = document.getElementById("add").value;
-        
-        if (gift.length != 0) {
-          gifts.push(gift);
-          document.getElementById("add").value = "";
-        }
+        const gift =  input.value;
 
-        show();
+        if (gift !== "") {
+
+          const li = document.createElement("li");
+          const p = document.createElement("p");
+
+          p.textContent =  '- ' + gift;
+          li.id = gift;
+          li.appendChild(p);
+          li.appendChild(erase());
+          list.appendChild(li);
+
+         input.value = "";
+        }
       }
 
-      function show() {
-        let list = "";
-        gifts.forEach((element) => {
-          list += "- " + element + "\n";
+      function erase() {
+        const btn = document.createElement("button");
+
+        btn.textContent = "X";
+        btn.className = "btn-delete";
+
+        btn.addEventListener("click", (e) => {  
+          var element = e.target.parentElement;
+          list.removeChild(element);
         });
-        document.getElementById("gift").innerText = list;
+
+        return btn;
       }
     </script>
   </body>
