@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+   
     <title>Gift list</title>
   </head>
   <body>
@@ -16,45 +17,13 @@
           <button onclick="add()" class="btn-add">Agregar</button>
         </section>
         <section class="list">
-          <ul id="gift"></ul>
+          <ul id="gifts"></ul>
+        </section>
+        <section class="delete-all">
+          <button onclick="eraseAll()" class="btn-delete btn-all">Borrar todo</button>
         </section>
       </main>
     </div>
-    <script>
-      const list = document.querySelector("ul");
-      const input = document.querySelector("input");
-
-      function add() {
-        const gift =  input.value;
-
-        if (gift !== "") {
-
-          const li = document.createElement("li");
-          const p = document.createElement("p");
-
-          p.textContent =  '- ' + gift;
-          li.id = gift;
-          li.appendChild(p);
-          li.appendChild(erase());
-          list.appendChild(li);
-
-         input.value = "";
-        }
-      }
-
-      function erase() {
-        const btn = document.createElement("button");
-
-        btn.textContent = "X";
-        btn.className = "btn-delete";
-
-        btn.addEventListener("click", (e) => {  
-          var element = e.target.parentElement;
-          list.removeChild(element);
-        });
-
-        return btn;
-      }
-    </script>
+    <script src="js/app.js"></script>
   </body>
 </html>

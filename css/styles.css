@@ -93,3 +93,10 @@
     font-size: 18px;
     color: #C9182B;
   }
+  .delete-all {
+    margin-top: 6px;
+  }
+  .btn-all {
+    padding: 10px;
+    width: 100%;
+  }
