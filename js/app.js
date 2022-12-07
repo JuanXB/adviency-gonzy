@@ -1,5 +1,6 @@
 const list = document.querySelector("ul");
 const input = document.querySelector("input");
+const empty = document.querySelector(".empty");
 
 function add() {
   const gift = input.value;
@@ -16,6 +17,11 @@ function add() {
 
     input.value = "";
   }
+
+  console.log();
+  if (list.childElementCount !== 0) {
+    empty.style.display = "none";
+  }
 }
 
 function erase() {
@@ -27,6 +33,10 @@ function erase() {
   btn.addEventListener("click", (e) => {
     var element = e.target.parentElement;
     list.removeChild(element);
+
+    if (list.childElementCount == 0) {
+      empty.style.display = "block";
+    }
   });
 
   return btn;
@@ -38,4 +48,6 @@ function eraseAll() {
       list.removeChild(list.firstChild);
     }
   }
+
+  empty.style.display = "block";
 }
